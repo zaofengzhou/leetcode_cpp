@@ -36,6 +36,7 @@ bool exist(vector<vector<char>>& board, string word) {
     return false;
 }
 
+/*
 int main()
 {
     vector<vector<char>> board = {{'A','B','C','E'},
@@ -49,5 +50,6 @@ int main()
     cout << exist(board, word2) << endl;
     return 0;
 }
+ */
 
 

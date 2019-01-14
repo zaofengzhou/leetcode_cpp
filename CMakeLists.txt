@@ -4,4 +4,4 @@ project(leetcode_cpp)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(leetcode_cpp Backtracking/RestoreIPAddresses.cpp Backtracking/CombinationSum.cpp Backtracking/CombinationSumTwo.cpp Backtracking/SudokuSolver.cpp Backtracking/GenerateParentheses.cpp Backtracking/WordSearch.cpp
-        README.md)
+        README.md "Breadth-first Search/WordLadder.cpp")
