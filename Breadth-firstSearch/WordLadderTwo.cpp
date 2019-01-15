@@ -21,47 +21,88 @@ static vector<string> getNeighbors(string word, unordered_set<string>& wordDict)
     return res;
 }
 
-/*vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) {
-    vector<vector<string>> res;
+// BFS: Trace every node's distance from the start node (level by level).
+static void bfs(string start, string end, unordered_set<string>& dict, map<string,
+        vector<string>>& nodeNeighbors, map<string, int>& distance) {
+    for (string str : dict)
+        nodeNeighbors[str] = vector<string>();
 
-    unordered_set<string> wordDict(wordList.begin(), wordList.end());
-    queue<string> toVisit;
-    addNextWords(beginWord, wordDict, toVisit);
+    queue<string> queue;
+    queue.push(start);
+    distance[start] = 0;
 
-    while(!toVisit.empty()) {
-        int num = toVisit.size();   //统计当前层数的结点数
-        vector<string> temp;
+    while (!queue.empty()) {
+        int count = queue.size();
+        bool foundEnd = false;
+        for (int i = 0; i < count; i++) {
+            string cur = queue.front();
+            queue.pop();
+            int curDistance = distance[cur];
+            vector<string> neighbors = getNeighbors(cur, dict); //cur node neighbors
 
-        for(int i = 0; i < num; i++) {
-            string word = toVisit.front();
-            temp.push_back(word);
-            toVisit.pop();
-//            if(word == endWord)
-//                return res;
-            addNextWords(word, wordDict, toVisit);
+            for (string neighbor : neighbors) {
+                nodeNeighbors[cur].push_back(neighbor);
+                if (distance.find(neighbor) == distance.end()) {// Check if visited
+                    distance[neighbor] = curDistance + 1;
+                    if (end == neighbor)// Found the shortest path
+                        foundEnd = true;
+                    else
+                        queue.push(neighbor);
+                }
+            }
         }
-        res.push_back(temp);
+        if (foundEnd)
+            break;
     }
+}
+
+// DFS: output all paths with the shortest distance.
+static void dfs(string cur, string end, unordered_set<string>& dict, map<string, vector<string>>& nodeNeighbors,
+        map<string, int>& distance, vector<string>& solution, vector<vector<string>>& res) {
+    solution.push_back(cur);
+    if (end == cur) {
+        res.push_back(solution);
+    } else {
+        for (string next : nodeNeighbors[cur]) {
+            if (distance[next] == distance[cur] + 1) {
+                dfs(next, end, dict, nodeNeighbors, distance, solution, res);
+            }
+        }
+    }
+    solution.pop_back();
+}
+
+vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) {
+    vector<vector<string>> res;
+    unordered_set<string> dict(wordList.begin(), wordList.end());
+    map<string, vector<string>> nodeNeighbors;  // Neighbors for every node
+    map<string, int> distance;  // Distance of every node from the start node
+    vector<string> solution;
+
+    dict.insert(beginWord);
+    bfs(beginWord, endWord, dict, nodeNeighbors, distance);
+    dfs(beginWord, endWord, dict, nodeNeighbors, distance, solution, res);
     return res;
-}*/
+}
 
 int main()
 {
     string beginWord = "hit";
     string endWord = "cog";
     vector<string> wordList = {"hot","dot","dog","lot","log","cog"};
-    unordered_set<string> wordDict(wordList.begin(), wordList.end());
-//    vector<vector<string>> res = findLadders(beginWord, endWord, wordList);
-    vector<string> res = getNeighbors("hot", wordDict);
-    for(auto s : res) {
-        cout << s << " ";
-    }
+    vector<vector<string>> res = findLadders(beginWord, endWord, wordList);
 
-//    for(auto v : res) {
-//        for(auto s : v) {
-//            cout << s << " ";
-//        }
-//        cout << endl;
+//    unordered_set<string> wordDict(wordList.begin(), wordList.end());
+//    vector<string> res = getNeighbors("dot", wordDict);
+//    for(auto s : res) {
+//        cout << s << " ";
 //    }
+
+    for(auto v : res) {
+        for(auto s : v) {
+            cout << s << " ";
+        }
+        cout << endl;
+    }
     return 0;
 }
