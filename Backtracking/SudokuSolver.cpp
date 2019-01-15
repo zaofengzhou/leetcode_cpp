@@ -1,7 +1,7 @@
 //
 // Created by zfzhou on 2019/1/13.
 //
-#include "/Users/zfzhou/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
 
 bool isValid(vector<vector<char>>& board, int row, int col, char c) {

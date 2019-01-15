@@ -1,7 +1,7 @@
 //
 // Created by zfzhou on 2019/1/12.
 //
-//#include "/Users/zfzhou/stdc++.h"
+//#include <bits/stdc++.h>
 #include <iostream>
 #include <string>
 #include <vector>

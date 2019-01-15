@@ -1,7 +1,7 @@
 //
 // Created by zfzhou on 2019/1/13.
 //
-#include "/Users/zfzhou/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
 
 static bool dfs(vector<vector<char>>& board, string& word, int index, int y, int x, vector<vector<bool>>& visited) {

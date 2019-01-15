@@ -1,7 +1,7 @@
 //
 // Created by zfzhou on 2019/1/13.
 //
-#include "/Users/zfzhou/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
 
 static void backtrack(vector<string>& res, string str, int open, int close, int max) {
