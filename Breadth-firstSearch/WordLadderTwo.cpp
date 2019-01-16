@@ -1,9 +1,7 @@
-//
-// Created by zfzhou on 1/15/2019.
-//
 #include <bits/stdc++.h>
 using namespace std;
 
+// Find all next level nodes.
 static vector<string> getNeighbors(string word, unordered_set<string>& wordDict) {
     vector<string> res;
     for(int p = 0; p < (int)word.length(); p++) {
@@ -13,7 +11,7 @@ static vector<string> getNeighbors(string word, unordered_set<string>& wordDict)
             word[p] = 'a' + k;
             if(wordDict.find(word) != wordDict.end()) {
                 res.push_back(word);
-                wordDict.erase(word);
+                //wordDict.erase(word);
             }
         }
         word[p] = letter;
@@ -38,11 +36,11 @@ static void bfs(string start, string end, unordered_set<string>& dict, map<strin
             string cur = queue.front();
             queue.pop();
             int curDistance = distance[cur];
-            vector<string> neighbors = getNeighbors(cur, dict); //cur node neighbors
+            vector<string> neighbors = getNeighbors(cur, dict); // cur node neighbors
 
             for (string neighbor : neighbors) {
                 nodeNeighbors[cur].push_back(neighbor);
-                if (distance.find(neighbor) == distance.end()) {// Check if visited
+                if (distance.find(neighbor) == distance.end()) {  // Check if visited
                     distance[neighbor] = curDistance + 1;
                     if (end == neighbor)// Found the shortest path
                         foundEnd = true;
@@ -85,6 +83,7 @@ vector<vector<string>> findLadders(string beginWord, string endWord, vector<stri
     return res;
 }
 
+/*
 int main()
 {
     string beginWord = "hit";
@@ -93,8 +92,9 @@ int main()
     vector<vector<string>> res = findLadders(beginWord, endWord, wordList);
 
 //    unordered_set<string> wordDict(wordList.begin(), wordList.end());
-//    vector<string> res = getNeighbors("dot", wordDict);
-//    for(auto s : res) {
+//    wordDict.insert(beginWord);
+//    vector<string> r = getNeighbors("hot", wordDict);
+//    for(auto s : r) {
 //        cout << s << " ";
 //    }
 
@@ -106,3 +106,4 @@ int main()
     }
     return 0;
 }
+*/
