@@ -10,6 +10,7 @@ static void solve(vector<vector<char>>& board) {
 
 }
 
+/*
 int main()
 {
     vector<vector<char>> board = {{'X', 'X', 'X', 'X'},
@@ -25,3 +26,4 @@ int main()
     }
     return 0;
 }
+*/
