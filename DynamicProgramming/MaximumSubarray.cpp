@@ -7,7 +7,7 @@ using namespace std;
 int maxSubArray(vector<int>& nums) {
     int n = nums.size();
     int dp[n];  //dp[i] means the maximum subarray ending with num[i]
-    memset(dp, 0, n);
+    memset(dp, 0, sizeof(dp));
     dp[0] = nums[0];
     int maxV = dp[0];
 
@@ -23,7 +23,7 @@ int main()
 {
     vector<int> nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
     int a[3];
-    memset(a, 0, 3);
+    memset(a, 0, sizeof(a));
     cout << maxSubArray(nums) << endl;
     return 0;
 }
