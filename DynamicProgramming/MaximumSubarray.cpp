@@ -18,6 +18,7 @@ int maxSubArray(vector<int>& nums) {
     return maxV;
 }
 
+/*
 int main()
 {
     vector<int> nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
@@ -26,3 +27,4 @@ int main()
     cout << maxSubArray(nums) << endl;
     return 0;
 }
+*/

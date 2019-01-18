@@ -34,6 +34,7 @@ static void dfs1(int index, int n, int sumW, int sumC, int w[], int c[], int& ma
 
 }
 
+/*
 int main()
 {
     int n = 5;
@@ -47,3 +48,4 @@ int main()
     cout << maxValue << endl;
     return 0;
 }
+*/
