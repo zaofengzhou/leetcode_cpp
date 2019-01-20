@@ -4,8 +4,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.
+
+For example, given the following triangle
+
+[
+     [2],
+    [3,4],
+   [6,5,7],
+  [4,1,8,3]
+]
+
+The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).
+
+Note:
+
+Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.
+ */
 static int dfs(vector<vector<int>>& triangle, int row, int col) {
-    if(row+1 >= triangle.size())
+    if(row+1 == triangle.size())    //下一层结点是边界
         return triangle[row][col];
     return triangle[row][col] + min(dfs(triangle, row+1, col), dfs(triangle, row+1, col+1));
 }
@@ -38,7 +56,23 @@ int minimumTotal(vector<vector<int>>& triangle) {
     return minV;
 }
 */
-
+/* triangle
+ * 2
+ * 3 4
+ * 6 5 7
+ * 4 1 8 3
+ *
+ * dp[][]
+ * 11
+ * 9 10
+ * 7 6 10
+ * 4 1 8 3
+ * dp[] //滚动数组
+ *
+ *
+ * 7 6 10
+ * 4 1 8 3
+ */
 int minimumTotal(vector<vector<int>>& triangle)
 {
     int n = triangle.size();
@@ -80,7 +114,7 @@ int main()
 //        }
 //        cout << endl;
 //    }
-    cout << minimumTotal1(triangle) << endl;
+    cout << minimumTotal1(triangle) << endl;    //dfs
     cout << minimumTotal(triangle) << endl;
     cout << minimumTotal2(triangle) << endl;
     return 0;

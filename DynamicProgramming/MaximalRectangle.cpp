@@ -10,6 +10,7 @@ int maximalRectangle(vector<vector<char>>& matrix) {
 
 }
 
+/*
 int main()
 {
     vector<vector<char>> matrix = {{'1','0','1','0','0'},
@@ -19,4 +20,5 @@ int main()
     printVector(matrix);
     return 0;
 }
+*/
 
