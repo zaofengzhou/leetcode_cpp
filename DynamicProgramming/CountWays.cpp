@@ -13,7 +13,7 @@ using namespace std;
 [1,2,4],3,3
 返回：2
  */
-int aim = 3;
+
 int process1(vector<int>& penny, int index, int aim) {
     int res = 0;
     if(index == penny.size()) {
@@ -26,7 +26,7 @@ int process1(vector<int>& penny, int index, int aim) {
     return res;
 }
 
-int countWays(vector<int>& penny, int n, int aim) {
+int countWays(vector<int>& penny, int aim) {
     return process1(penny, 0, aim);
 }
 
@@ -46,7 +46,7 @@ int process2(vector<int>& penny, int index, int aim, vector<vector<int>>& map) {
             }
         }
     }
-    map[index][aim] = res == 0? -1 : res;
+    map[index][aim] = res == 0 ? -1 : res;
     return res;
 }
 
@@ -56,13 +56,36 @@ int coins2(vector<int>& penny, int aim) {
     return process2(penny, 0, aim, map);
 }
 
+int coins3(vector<int>& penny, int aim) {
+    int n = penny.size();
+    int dp[n][aim+1];       //dp[i][j]表示用penny[0...i]组成前钱数j的方法数
+    memset(dp, 0, sizeof(dp));
+    for(int i = 0; i < n; i++) {
+        dp[i][0] = 1;
+    }
+    for(int j = 1; penny[0]*j <= aim; j++) {
+        dp[0][penny[0]*j] = 1;
+    }
+    for(int i = 1; i < n; i++) {
+        for(int j = 1; j <= aim; j++) {
+            int num = 0;
+            for(int k = 0; j- k*penny[i]>= 0; k++) {
+                num += dp[i-1][j-k*penny[i]];
+            }
+            dp[i][j] = num;
+        }
+    }
+    return dp[n-1][aim];
+}
+
 
 int main()
 {
     vector<int> penny = {1, 2, 4};
-
-    cout << aim << endl;
-    cout << countWays(penny, 3, 3) << endl;
+    int aim = 3;
+    //cout << aim << endl;
+    cout << countWays(penny, aim) << endl;
     cout << coins2(penny, aim) << endl;
+    cout << coins3(penny, aim) << endl;
     return 0;
 }
