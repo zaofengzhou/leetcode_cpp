@@ -52,7 +52,7 @@ int process2(vector<int>& penny, int index, int aim, vector<vector<int>>& map) {
 
 int coins2(vector<int>& penny, int aim) {
     int n = penny.size();
-    vector<vector<int>> map(n, vector<int>(aim+1, 0));
+    vector<vector<int>> map(n+1, vector<int>(aim+1, 0));
     return process2(penny, 0, aim, map);
 }
 
