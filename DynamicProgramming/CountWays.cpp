@@ -69,7 +69,7 @@ int coins3(vector<int>& penny, int aim) {
     for(int i = 1; i < n; i++) {
         for(int j = 1; j <= aim; j++) {
             int num = 0;
-            for(int k = 0; j- k*penny[i]>= 0; k++) {
+            for(int k = 0; j- k*penny[i]>= 0; k++) {    //使用k张penny[i]货币,剩下的钱用penny[0..i-1]组成
                 num += dp[i-1][j-k*penny[i]];
             }
             dp[i][j] = num;
@@ -77,7 +77,6 @@ int coins3(vector<int>& penny, int aim) {
     }
     return dp[n-1][aim];
 }
-
 
 int main()
 {
