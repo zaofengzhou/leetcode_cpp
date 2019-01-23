@@ -78,6 +78,7 @@ int coins3(vector<int>& penny, int aim) {
     return dp[n-1][aim];
 }
 
+/*
 int main()
 {
     vector<int> penny = {1, 2, 4};
@@ -88,3 +89,4 @@ int main()
     cout << coins3(penny, aim) << endl;
     return 0;
 }
+*/
