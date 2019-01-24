@@ -65,6 +65,7 @@ int maximalSquare1(vector<vector<char>>& matrix) {
     return sz*sz;
 }
 
+/*
 int main()
 {
     vector<vector<char>> matrix = {{'1', '0', '1', '0', '0'},
@@ -76,3 +77,4 @@ int main()
     cout << maximalSquare1(matrix) << endl;
     return 0;
 }
+*/
