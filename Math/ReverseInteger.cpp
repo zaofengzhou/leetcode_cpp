@@ -7,9 +7,11 @@ using namespace std;
 int reverse(int x) {
     int sign = x < 0 ? -1 : 1;
     int res = 0;
-    long long temp = abs(x);
-    while(temp != 0) {
-
+    int temp = abs(x);
+    while(temp > 0) {
+        if(INT_MAX / 10 < res || (INT_MAX - temp % 10) < res*10) {
+            return 0;
+        }
         int m = temp % 10;
         res = res * 10 + m;
         temp /= 10;
@@ -31,6 +33,8 @@ int reverse1(int x) {
     return x >= 0 ? res : -res;
 }
 
+
+/*
 int main()
 {
 //    int a = -pow(2, 31);
@@ -39,8 +43,12 @@ int main()
 //    cout << reverse(-123) << endl;
 //    cout << reverse(120) << endl;
 //    cout << reverse(901000) << endl;
-//    cout << reverse(1534236469) << endl;
-    cout << reverse1(-2147483648) << endl;
+    cout << INT_MAX << endl;
+    //cout << reverse(1534236469) << endl;
+    cout << reverse(2146847412) << endl;
+    cout << reverse(-2147483648) << endl;
     return 0;
 }
+*/
+
 
