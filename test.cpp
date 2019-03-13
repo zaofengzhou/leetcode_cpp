@@ -103,6 +103,7 @@ int main()
 }
 */
 
+/*
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -154,3 +155,4 @@ int main()
     printf("%.2f\n", profit);
     return 0;
 }
+*/
